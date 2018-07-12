@@ -6,7 +6,7 @@ library(dplyr)
 
 shinyUI(
 		
-  navbarPage(HTML("olsrr - Tools for OLS Regression"), id = 'mainpage',
+  navbarPage(HTML("olsrr"), id = 'mainpage',
 
   source('ui/ui_data.R', local = TRUE)[[1]],
   source('ui/ui_analyze.R', local = TRUE)[[1]],

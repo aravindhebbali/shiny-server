@@ -7,7 +7,7 @@ library(shinycssloaders)
 
 shinyUI(
 
-    navbarPage(HTML("RFM Analysis"), id = 'mainpage',
+    navbarPage(HTML("RFM"), id = 'mainpage',
 
     # source('ui/ui_welcome.R', local = TRUE)[[1]],	
     source('ui/ui_data.R', local = TRUE)[[1]],
