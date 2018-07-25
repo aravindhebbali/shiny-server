@@ -13,8 +13,35 @@ ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datas
 tutorial_options(exercise.completion = FALSE)
 ```
 
+## Trial
+
+<hr>
+
 This code computes the answer to one plus one, change it so it computes two plus two:
 
 ```{r addition, exercise=TRUE}
 1 + 1
 ```
+
+## Agenda
+
+<hr>
+
+- read data from flat/delimited files
+- handle column names/file header
+- skip text/info in files
+- specify column/variable data types
+- read subset of columns/variables
+
+## File Types
+
+<hr>
+
+<br>
+
+#### Comma Separated Values
+
+<br>
+![](//images//mtcars_comma.png){width=60%}
+<br>
+
