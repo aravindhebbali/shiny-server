@@ -42,6 +42,6 @@ This code computes the answer to one plus one, change it so it computes two plus
 #### Comma Separated Values
 
 <br>
-![](//srv//shiny-server//test//images//mtcars_comma.png){width=60%}
+<img src="https://blog.rsquaredacademy.com/post/crowd_flower3.png" style="width:60.0%" />
 <br>
 
