@@ -10,6 +10,7 @@ library(readr)
 library(dplyr)
 knitr::opts_chunk$set(echo = FALSE)
 ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+tutorial_options(exercise.completion = FALSE)
 ```
 
 This code computes the answer to one plus one, change it so it computes two plus two:
