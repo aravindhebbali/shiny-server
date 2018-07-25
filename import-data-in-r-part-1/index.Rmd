@@ -73,7 +73,7 @@ read_csv('folder_path/xyz.csv')
 <hr>
 
 - read the file `hsb2.csv` 
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 
 
 ```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Introduction', exercise.lines=5}
@@ -83,7 +83,7 @@ read_csv('folder_path/xyz.csv')
 ```
 
 ```{r import2-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb2.csv')
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv')
 ```
 
 Sometimes you may get an error while reading data from a file. In such case try the following:
@@ -126,7 +126,7 @@ read_csv('directory_path/file_name.csv', col_names = FALSE)
 <hr>
 
 - read data from `hsb3.csv` 
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - <a href="https://github.com/rsquaredacademy/datasets/blob/master/hsb2.csv" target="_blank">click here</a> to check if the file has column names
 - if column names are absent, indicate it while reading data
 
@@ -137,7 +137,7 @@ read_csv('directory_path/file_name.csv', col_names = FALSE)
 ```
 
 ```{r import1-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb3.csv', col_names = FALSE)
+read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = FALSE)
 ```
 
 ## Column Names
@@ -158,7 +158,7 @@ read_csv('directory_path/file_name.csv', col_names = column_names)
 <hr>
 
 - read data from `hsb3.csv` 
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - use `cnames` provided below to specify the column names 
 
 ```{r import4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Names', exercise.lines=5}
@@ -172,7 +172,7 @@ cnames <- c("id", "female", "race", "ses", "schtyp", "prog", "read", "write", "m
 
 ```{r import4-solution}
 cnames <- c("id", "female", "race", "ses", "schtyp", "prog", "read", "write", "math", "science", "socst")
-read_csv('/home/hebbali_aravind/datasets/hsb3.csv', col_names = cnames)
+read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = cnames)
 ```
 
 ## Skip Lines
@@ -200,7 +200,7 @@ read_csv('directory_path/file_name.csv', skip = 5)
 <hr>
 
 - read data from `hsb4.cv` file
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - <a href="https://github.com/rsquaredacademy/datasets/blob/master/hsb4.csv" target="_blank">click here</a> to check if the file has any text/info before data
 - if any text/info is present before data, count the number of rows covered by the text
 - use `skip` argument to skip the text/info and read from the row where the column names are present
@@ -212,7 +212,7 @@ read_csv('directory_path/file_name.csv', skip = 5)
 ```
 
 ```{r import8-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb4.csv', skip = 3)
+read_csv('//home//hebbali_aravind//datasets//hsb4.csv', skip = 3)
 ```
 
 ## Maximum Lines 
@@ -232,7 +232,7 @@ read_csv('directory_path/file_name.csv', n_max = 100)
 <hr>
 
 - read the first 120 rows from the `hsb2.csv` file
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - observe the last row in the output and check if it says `# ... with 110 more rows`
 
 ```{r import5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Maximum Lines', exercise.lines=5}
@@ -242,7 +242,7 @@ read_csv('directory_path/file_name.csv', n_max = 100)
 ```
 
 ```{r import5-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb2.csv', n_max = 120)
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', n_max = 120)
 ```
 
 ## Column Specification
@@ -260,7 +260,7 @@ If you observed the output when we read data in the previous tab, it includes th
 - run the below code and observe the output
 
 ```{r import3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Introduction', message = FALSE, exercise.lines=5}
-spec_csv('/home/hebbali_aravind/datasets/hsb2.csv')
+spec_csv('//home//hebbali_aravind//datasets//hsb2.csv')
 ```
 
 ## Column Types 
@@ -294,7 +294,7 @@ To specify the data types, we will use `col_types` argument and supply to it a l
 In the below example, we read data from `mtcars5.csv` file while specifying the data types. Keep in mind that we need to specify the data type for each column. 
 
 ```{r import6-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
-read_csv('J:/R/Others/interactive/mtcars5.csv', 
+read_csv('//home//hebbali_aravind//datasets//', 
          col_types = list(col_double(), col_factor(levels = c(4, 6, 8)),
                           col_double(), col_integer()))
 ```                          
@@ -304,7 +304,7 @@ read_csv('J:/R/Others/interactive/mtcars5.csv',
 <hr>
 
 - read data from `hsb5.csv` file
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - specify the column types for each column in the file
 
 ```{r import6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Types', exercise.lines=5}
@@ -314,7 +314,7 @@ read_csv('J:/R/Others/interactive/mtcars5.csv',
 ```
 
 ```{r import6-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb2.csv', col_types = list(
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = list(
   col_integer(), col_factor(levels = c(0, 1)), 
   col_factor(levels = c(1, 2, 3, 4)), col_factor(levels = c(1, 2, 3)), 
   col_factor(levels = c(1, 2)), col_factor(levels = c(1, 2, 3)),
@@ -330,7 +330,7 @@ read_csv('/home/hebbali_aravind/datasets/hsb2.csv', col_types = list(
 We may not always want to read all the columns from a file. In such cases, we can specify the columns to be read using `col_types` argument and supplying to it the names of the columns to be read. We will use `cols_only()` to specify the column names and their respective data types.
 
 ```{r import7-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
-read_csv('J:/R/Others/interactive/mtcars5.csv', 
+read_csv('//home//hebbali_aravind//datasets//mtcars5.csv', 
          col_types = cols_only(mpg = col_double(), 
                                cyl = col_factor(levels = c(4, 6, 8))))
 ```
@@ -342,7 +342,7 @@ read_csv('J:/R/Others/interactive/mtcars5.csv',
 <hr>
 
 - read data from `hsb2.csv` file
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - read the following columns only
     - id
     - prog
@@ -356,7 +356,7 @@ read_csv('J:/R/Others/interactive/mtcars5.csv',
 ```
 
 ```{r import7-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb2.csv', col_types = cols_only(id = col_integer(),
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = cols_only(id = col_integer(),
   prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
 )
 ```
@@ -368,7 +368,7 @@ read_csv('/home/hebbali_aravind/datasets/hsb2.csv', col_types = cols_only(id = c
 Sometimes we may want to skip some columns while reading data i.e. uppose we have 10 columns and we want to read only 8 columns. In such cases, we can use `cols_skip()` to specify the columns that must be skipped while reading the data.
 
 ```{r import9-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
-read_csv('J:/R/Others/interactive/mtcars5.csv', 
+read_csv('//home//hebbali_aravind//datasets//mtcars5.csv', 
          col_types = list(col_double(), col_factor(levels = c(4, 6, 8)),
                           col_skip(), col_integer()))
 ```
@@ -380,7 +380,7 @@ read_csv('J:/R/Others/interactive/mtcars5.csv',
 <hr>
 
 - read data from `hsb5.csv` file
-- the path of the directory is `/home/hebbali_aravind/datasets`
+- the path of the directory is `//home//hebbali_aravind//datasets//`
 - skip the following columns
     - id
     - prog
@@ -394,7 +394,7 @@ read_csv('J:/R/Others/interactive/mtcars5.csv',
 ```
 
 ```{r import9-solution}
-read_csv('/home/hebbali_aravind/datasets/hsb2.csv', col_types = cols_only(id = col_integer(),
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = cols_only(id = col_integer(),
   prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
 )
 ```
