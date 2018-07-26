@@ -1,0 +1,123 @@
+---
+title: "Intro to SQL - Part 3"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+```
+
+## Introduction
+
+## Aggregate Functions
+
+Often, you will want to perform some calculation on the data in a database. SQL provides a few functions, called aggregate functions, to help you out with this.
+
+For example,
+
+`
+SELECT AVG(budget)
+FROM films`
+
+gives you the average value from the budget column of the films table. Similarly, the MAX function returns the highest budget:
+
+`
+SELECT MAX(budget)
+FROM films`
+
+The SUM function returns the result of adding up the numeric values in a column:
+
+`
+SELECT SUM(budget)
+FROM films`
+
+## Aggregate - 1
+
+You can probably guess what the MIN function does! Now it's your turn to try out some SQL functions.
+
+```{r sql1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'SUM'}
+dbGetQuery(con, "SELECT SUM(n_visit) FROM ecom")
+```
+
+```{r sql2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'AVG'}
+dbGetQuery(con, "SELECT AVG(n_visit) FROM ecom")
+```
+
+```{r sql3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'MAX'}
+dbGetQuery(con, "SELECT MAX(n_visit) FROM ecom")
+```
+
+```{r sql4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'MIN'}
+dbGetQuery(con, "SELECT MIN(n_visit) FROM ecom")
+```
+
+## Aggregate - 2
+
+You can probably guess what the MIN function does! Now it's your turn to try out some SQL functions.
+
+```{r sql5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'SUM'}
+dbGetQuery(con, "SELECT SUM(n_visit) FROM ecom WHERE n_visit > 5")
+```
+
+```{r sql6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'AVG'}
+dbGetQuery(con, "SELECT AVG(n_visit) FROM ecom WHERE country LIKE 'P%'")
+```
+
+```{r sql7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'MAX'}
+dbGetQuery(con, "SELECT MAX(n_visit) FROM ecom WHERE device == 'tablet'")
+```
+
+```{r sql8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'MIN'}
+dbGetQuery(con, "SELECT MIN(n_visit) FROM ecom WHERE duration BETWEEN 600 AND 900")
+```
+
+## Alias - Part 1
+
+You may have noticed in the first exercise of this chapter that the column name of your result was just the name of the function you used. For example,
+
+`
+SELECT MAX(budget)
+FROM films`
+
+gives you a result with one column, named max. But what if you use two functions like this?
+
+`
+SELECT MAX(budget), MAX(duration)
+FROM films`
+
+Well, then you'd have two columns named max, which isn't very useful!
+
+To avoid situations like this, SQL allows you to do something called aliasing. Aliasing simply means you assign a temporary name to something. To alias, you use the AS keyword, which you've already seen earlier in this course.
+
+For example, in the above example we could use aliases to make the result clearer:
+
+`
+SELECT MAX(budget) AS max_budget,
+       MAX(duration) AS max_duration
+FROM films`
+
+Aliases are helpful for making results more readable!
+
+## Alias - Part 2
+
+```{r sql9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alias'}
+dbGetQuery(con, "SELECT AVG(n_visit) AS avg_mobile FROM ecom WHERE device == 'mobile'")
+```
+
+```{r sql10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alias'}
+dbGetQuery(con, "SELECT MAX(n_visit) AS max_visit FROM ecom")
+```
+
+```{r sql11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alias'}
+dbGetQuery(con, "SELECT MIN(duration) AS min_duration FROM ecom")
+```
+

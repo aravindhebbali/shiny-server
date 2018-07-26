@@ -1,0 +1,123 @@
+---
+title: "Intro to SQL - Part 1"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+```
+
+## Introduction
+
+## Select Single Column
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{sql test, connection = con, echo=TRUE, collapse=TRUE}
+select device from ecom limit 10
+```
+
+## Select Multiple Columns
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select Multiple Columns'}
+dbGetQuery(con, "select referrer, device, purchase  from ecom")
+```
+
+```{r sql2-solution}
+dbGetQuery(con, "select referrer, device, purchase  from ecom")
+```
+
+## Select All Columns
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select All Columns'}
+dbGetQuery(con, "select * from ecom")
+```
+
+```{r sql3-solution}
+dbGetQuery(con, "select * from ecom")
+```
+
+## Select All Columns (Limit)
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select All Columns (Limit)'}
+dbGetQuery(con, "select * from ecom limit 10")
+```
+
+```{r sql4-solution}
+dbGetQuery(con, "select * from ecom limit 10")
+```
+
+## Select Distinct
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Select Distinct'}
+dbGetQuery(con, "select distinct referrer from ecom")
+```
+
+```{r sql5-solution}
+dbGetQuery(con, "select distinct referrer from ecom")
+```
+
+## Count
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Count'}
+dbGetQuery(con, "select count(*) from ecom")
+```
+
+```{r sql6-solution}
+dbGetQuery(con, "select count(*) from ecom")
+```

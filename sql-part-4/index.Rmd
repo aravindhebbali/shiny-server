@@ -1,0 +1,106 @@
+---
+title: "Intro to SQL - Part 4"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+```
+
+## Agenda
+
+## Introduction
+
+## Order By
+
+In this chapter you'll learn how to sort and group your results to gain further insight. Let's go!
+
+In SQL, the ORDER BY keyword is used to sort results in ascending or descending order according to the values of one or more columns.
+
+By default ORDER BY will sort in ascending order. If you want to sort the results in descending order, you can use the DESC keyword. For example,
+
+`
+SELECT title
+FROM films
+ORDER BY release_year DESC`
+
+gives you the titles of films sorted by release year, from newest to oldest.
+
+```{r sql1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Order By'}
+dbGetQuery(con, "SELECT * FROM ecom ORDER BY country")
+```
+
+```{r sql2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Order By'}
+dbGetQuery(con, "SELECT * FROM ecom ORDER BY duration")
+```
+
+```{r sql3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Order By'}
+dbGetQuery(con, "SELECT * FROM ecom ORDER BY n_visit DESC")
+```
+
+## Group By - Intro
+
+Now you know how to sort results! Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, GROUP BY allows you to group a result by one or more columns, like so:
+
+`
+SELECT sex, count(*)
+FROM employees
+GROUP BY sex`
+
+This might give, for example:
+
+sex count
+male  15
+female  19
+
+Commonly, GROUP BY is used with aggregate functions like COUNT() or MAX(). Note that GROUP BY always goes after the FROM clause!
+
+## Group By - Practice
+
+As you've just seen, combining aggregate functions with GROUP BY can yield some powerful results!
+
+A word of warning: SQL will return an error if you try to SELECT a field that is not in your GROUP BY clause without using it to calculate some kind of value about the entire group.
+
+Note that you can combine GROUP BY with ORDER BY to group your results, calculate something about them, and then order your results. For example,
+
+`
+SELECT sex, count(*)
+FROM employees
+GROUP BY sex
+ORDER BY count DESC`
+
+might return something like
+
+sex count
+female  19
+male  15
+
+because there are more females at our company than males. Note also that ORDER BY always goes after GROUP BY. Let's try some exercises!
+
+```{r sql4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Group By'}
+dbGetQuery(con, "SELECT device, count(*) AS visits FROM ecom GROUP BY device ORDER by visits DESC ")
+```
+
+```{r sql5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Group By'}
+dbGetQuery(con, "SELECT device, MAX(duration) AS max_duration FROM ecom GROUP BY device ORDER by max_duration DESC ")
+```
+
+## Having
+
+```{r sql6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Having'}
+dbGetQuery(con, "SELECT country FROM ecom GROUP BY country HAVING COUNT(*) > 10")
+```
+
+## Putting It All Together
+
+Compute AOV by devices
+

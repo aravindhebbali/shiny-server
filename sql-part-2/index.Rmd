@@ -1,0 +1,307 @@
+---
+title: "Intro to SQL - Part 2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+copy_to(con, ecom)
+```
+
+## Introduction
+
+You now know how to select columns and perform basic counts. This chapter will focus on filtering your results.
+
+In SQL, the WHERE keyword allows you to filter based on both text and numeric values in a table. There are a few different comparison operators you can use:
+
+- `=` equal
+- `<>` not equal
+- `<` less than
+- `>` greater than
+- `<=` less than or equal to
+- `>=` greater than or equal to
+
+For example, you can filter text records such as title. The following code returns all films with the title 'Metropolis':
+
+```{r sql, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT title
+FROM films
+WHERE title = 'Metropolis';
+```
+Notice that the WHERE clause always comes after the FROM statement!
+
+## Filter
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE duration > 300")
+```
+
+```{r sql1-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE duration > 300")
+```
+
+## Filter Text
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Filter Text'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE device == 'mobile'")
+```
+
+```{r sql2-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE device == 'mobile'")
+```
+
+## Where And
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Where And'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit > 3 AND duration > 100")
+```
+
+```{r sql3-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit > 3 AND duration > 100")
+```
+
+## Where And Or - Part 1
+
+What if you want to select rows based on multiple conditions where some but not all of the conditions need to be met? For this, SQL has the OR operator.
+
+For example, the following returns all films released in either 1994 or 2000:
+
+```{r sqleg2, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT title
+FROM films
+WHERE release_year = 1994
+OR release_year = 2000
+```
+
+Note that you need to specify the column for every OR condition, so the following is invalid:
+
+```{r sqleg3, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT title
+FROM films
+WHERE release_year = 1994 OR 2000
+```
+
+When combining AND and OR, be sure to enclose the individual clauses in parentheses, like so:
+
+```{r sqleg4, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT title
+FROM films
+WHERE (release_year = 1994 OR release_year = 1995)
+AND (certification = 'PG' OR certification = 'R')
+```
+
+Otherwise, due to SQL's precedence rules, you may not get the results you're expecting!
+
+## Where And Or - Part 2
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Where And'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE (n_visit == 5 OR n_visit == 3) 
+  AND (device = 'mobile' OR device = 'tablet')")
+```
+
+```{r sql7-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE (n_visit == 5 OR n_visit == 3) 
+  AND (device = 'mobile' OR device = 'tablet')")
+```
+
+## Between - Part 1
+
+As you've learned, you can use the following query to get titles of all films released in and between 1994 and 2000:
+
+```{r sqleg10, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT title
+FROM films
+WHERE release_year >= 1994
+AND release_year <= 2000
+```
+
+Checking for ranges like this is very common, so in SQL the BETWEEN keyword provides a useful shorthand for filtering values within a specified range. This query is equivalent to the one above:
+
+```{r sqleg5, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT title
+FROM films
+WHERE release_year
+BETWEEN 1994 AND 2000
+```
+
+It's important to remember that BETWEEN is inclusive, meaning the beginning and end values are included in the results!
+
+## Between - Part 2
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Between'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit BETWEEN 1 AND 3
+  AND device = 'mobile'")
+```
+
+```{r sql8-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit BETWEEN 1 AND 3
+  AND device = 'mobile'")
+```
+
+## Where In
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Where In'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit IN (2, 4, 6, 8, 10)")
+```
+
+```{r sql9-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit IN (2, 4, 6, 8, 10)")
+```
+
+## Introduction to NULL and IS NULL
+
+In SQL, NULL represents a missing or unknown value. You can check for NULL values using the expression IS NULL. For example, to count the number of missing birth dates in the people table:
+
+```{r sqleg6, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT COUNT(*)
+FROM people
+WHERE birthdate IS NULL
+```
+
+As you can see, IS NULL is useful when combined with WHERE to figure out what data you're missing.
+
+Sometimes, you'll want to filter out missing values so you only get results which are not NULL. To do this, you can use the IS NOT NULL operator.
+
+For example, this query gives the names of all people whose birth dates are not missing in the people table.
+
+```{r sqleg7, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT name
+FROM people
+WHERE birthdate IS NOT NULL
+```
+
+## NULL and IS NULL
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'NULL and IS NULL'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE device IS NULL")
+```
+
+```{r sql10-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE device IS NULL")
+```
+
+## LIKE and NOT LIKE - Part 1
+
+As you've seen, the WHERE clause can be used to filter text data. However, so far you've only been able to filter by specifying the exact text you're interested in. In the real world, often you'll want to search for a pattern rather than a specific text string.
+
+In SQL, the LIKE operator can be used in a WHERE clause to search for a pattern in a column. To accomplish this, you use something called a wildcard as a placeholder for some other values. There are two wildcards you can use with LIKE:
+
+The % wildcard will match zero, one, or many characters in text. For example, the following query matches companies like 'Data', 'DataC' 'DataCamp', 'DataMind', and so on:
+
+```{r sqleg8, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT name
+FROM companies
+WHERE name LIKE 'Data%'
+```
+
+The _ wildcard will match a single character. For example, the following query matches companies like 'DataCamp', 'DataComp', and so on:
+
+```{r sqleg9, echo=TRUE, eval=FALSE, collapse=FALSE}
+SELECT name
+FROM companies
+WHERE name LIKE 'DataC_mp'
+```
+
+You can also use the NOT LIKE operator to find records that don't match the pattern you specify.
+
+Got it? Let's practice!
+
+## LIKE and NOT LIKE - Part 2
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql11, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'LIKE and NOT LIKE'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE country LIKE 'P%'")
+```
+
+```{r sql11-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE country LIKE 'P%'")
+```
+
+## LIKE and NOT LIKE - Part 3
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r sql12, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'LIKE and NOT LIKE'}
+dbGetQuery(con, "SELECT * FROM ecom WHERE country LIKE '_o%'")
+```
+
+```{r sql12-solution}
+dbGetQuery(con, "SELECT * FROM ecom WHERE country LIKE '_o%'")
+```
