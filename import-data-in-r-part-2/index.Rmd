@@ -1,0 +1,109 @@
+---
+title: "Import Data in R"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(readr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Agenda
+
+<hr>
+
+- read data from flat/delimited files
+- handle column names/file header
+- skip text/info in files
+- specify column/variable data types
+- read subset of columns/variables
+
+## File Types
+
+<hr>
+
+<br>
+
+#### Comma Separated Values
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_comma.png){width=60%}
+<br>
+
+<br>
+
+#### Semi Colon Separated Values
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_semicolon.png){width=60%}
+<br>
+
+<br>
+
+#### Space Separated Values
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_space.png){width=60%}
+<br>
+
+<br>
+
+#### Tab Separated Values
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_tab.png){width=60%}
+<br>
+
+## Read Data
+
+<hr>
+
+Let us read data from a csv (comma separated values) file and explore the options listed in the previous section. To read a file named `xyz.csv`, you will do the following i.e. use `read_csv()` and specify the path to the folder/directory where the file resides.
+
+```{r import2-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_csv('folder_path/xyz.csv')
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read the file `hsb2.csv` 
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+
+
+```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Introduction', exercise.lines=5}
+# read data
+
+
+```
+
+```{r import2-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv')
+```
+
+Sometimes you may get an error while reading data from a file. In such case try the following:
+
+- check the separator in the file and ensure it is a `comma`
+- check the path to the directory where the file resides
+
+## Column Names
+
+<hr>
+
+#### Column names are present
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_comma.png){width=60%}
+<br>
+<br>
+
+#### Column names are absent
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_column_false.png){width=60%}
+<br>
