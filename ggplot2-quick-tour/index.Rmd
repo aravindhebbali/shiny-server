@@ -1,0 +1,277 @@
+---
+title: "qplot"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Agenda
+
+<hr>
+
+Learn to quickly build a set of plots that are routinely used to explore data:
+
+- Scatter Plot
+- Bar Plot
+- Box Plot
+- Line Chart
+- Histogram
+
+## Introduction
+
+<hr>
+
+Shortcut designed for those familiar with base plots. You can quickly produce a number of different
+types of plots. Below are the key arguments:
+
+- `x`    : data for X axis
+- `y`    : data for Y axis
+- `data` : a data frame or a tibble
+- `geom` : symbols to represent data
+- `fill` : color for filled symbols
+- `color`: color for other symbols
+- `shape`: shape of the geom
+- `size` : size of the symbol
+
+## Scatter Plot - Part 1
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = hp, y = mpg, data = mtcars)
+```
+
+### Instructions
+
+<hr>
+
+- map `x` to `disp`
+- map `y` to `mpg`
+- map `data` to `mtcars`
+
+```{r gg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+# scatter plot using qplot
+qplot(x = ___, y = ___, data = ___)
+```
+
+```{r gg2-solution}
+qplot(x = disp, y = mpg, data = mtcars)
+```
+
+## Scatter Plot - Part 2
+
+### Point & Line
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(hp, mpg, data = mtcars, geom = c('point', 'line'))
+```
+
+### Instructions
+
+<hr>
+
+- map `geom` to `point` and `line`
+
+```{r gg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point & Line'}
+qplot(disp, mpg, data = mtcars, geom = c('____', '____'))
+```
+
+```{r gg3-solution}
+qplot(x = disp, y = mpg, data = mtcars, geom = c('point', 'line'))
+```
+
+
+## Scatter Plot - Part 3
+
+### Color
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(hp, mpg, data = mtcars, color = gear)
+```
+
+### Instructions
+
+<hr>
+
+- map `color` to `cyl`
+
+```{r gg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point Color'}
+qplot(disp, mpg, data = mtcars, color = ____)
+```
+
+```{r gg4-solution}
+qplot(x = disp, y = mpg, data = mtcars, color = 'cyl')
+```
+
+## Bar Plot - Part 1
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = gear, data = mtcars, geom = c('bar'))
+```
+
+### Instructions
+
+<hr>
+
+- map `x` to `cyl`
+- map `geom` to `bar`
+
+```{r gg7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+qplot(x = ____, data = mtcars, geom = c('____'))
+```
+
+```{r gg7-solution}
+qplot(x = cyl, data = mtcars, geom = 'bar')
+```
+
+
+## Bar Plot - Part 2
+
+### Color
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = gear, data = mtcars, geom = c('bar'), fill = vs)
+```
+
+### Instructions
+
+<hr>
+
+- map `x` to `cyl`
+- map `fill` to `am`
+
+```{r gg8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+qplot(x = ____, data = mtcars, geom = c('bar'), fill = ____)
+```
+
+```{r gg8-solution}
+qplot(x = cyl, data = mtcars, geom = c('bar'), fill = am)
+```
+
+
+## Box Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg9eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+qplot(x = cyl, y = disp, data = mtcars, geom = c('boxplot'))
+```
+
+### Instructions
+
+<hr>
+
+- map `x` to `gear`
+- map `y` to `mpg`
+- map `geom` to `boxplot`
+
+
+```{r gg9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+qplot(x = ____, y = ____, data = mtcars, geom = c('______'))
+```
+
+```{r gg9-solution}
+qplot(x = gear, y = mpg, data = mtcars, geom = 'boxplot')
+```
+
+## Line Chart
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg12eg, echo=TRUE, eval=FALSE, collapse=FALSE, fig.align='center'}
+qplot(x = ____, y = ____, data = economics, geom = c('____'))
+```
+
+### Instructions
+
+<hr>
+
+- map `x` to `date`
+- map `y` to `umemploy`
+- map `geom` to `line`
+
+```{r gg12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+qplot(x = ____, y = ____, data = economics, geom = c('____'))
+```
+
+```{r gg12-solution}
+qplot(x = date, y = unemploy, data = economics, geom = c('line'))
+```
+
+## Histogram
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r gg14eg, echo=TRUE, eval=FALSE, collapse=FALSE, fig.align='center'}
+qplot(x = disp, data = mtcars, bins = 6)
+```
+
+### Instructions
+
+<hr>
+
+- map `x` to `mpg`
+- set `bins` to 5
+
+```{r gg14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+qplot(x = ____, data = mtcars, bins = ____)
+```
+
+```{r gg14-solution}
+qplot(x = mpg, data = mtcars, bins = 5)
+```
