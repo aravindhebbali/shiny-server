@@ -1,0 +1,319 @@
+---
+title: "ggplot2: Geoms"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+```
+
+## Agenda
+
+<hr>
+
+Create some of the most routinely used plots to explore data using the `geom_*` functions:
+
+- Scatter Plot
+- Bar Plot
+- Box Plot
+- Histogram
+- Line Chart
+- Regression Line
+
+
+## Introduction
+
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r use, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+## Point
+
+### Introduction
+
+<hr>
+
+A scatter plot displays the relationship between two continuous variables. In ggplot2, we can build a scatter plot using `geom_point()`. Scatterplots can show you visually 
+
+- the strength of the relationship between the variables 
+- the direction of the relationship between the variables 
+- and whether outliers exist
+
+### Example
+
+<hr>
+
+```{r geoms2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point()
+```
+
+### Instructions
+
+<hr>
+
+- set `x` to `wt`
+- set `y` to `mpg`
+- create a scatter plot by representing the data using points
+
+```{r geoms2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Point'}
+ggplot(mtcars, aes(x = , y = )) + 
+  
+```
+
+```{r geoms2-solution}
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
+
+## Bar 
+
+### Introduction
+
+<hr>
+
+Bar plots present grouped data with rectangular bars. The bars may represent the frequency of the groups or values. Bar plots can be: 
+
+- horizontal 
+- vertical
+- grouped
+- stacked 
+- proportional
+
+### Example
+
+<hr>
+
+```{r geoms8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = cyl)) +
+  geom_bar()
+```
+
+### Instructions
+
+<hr>
+
+- set `x` to `device`
+- represent the data using bars
+
+```{r geoms8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Frequency'}
+ggplot(ecom, aes(x = factor())) +
+  
+```
+
+```{r geoms8-solution}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar()
+```
+
+## Boxplot
+
+### Introduction
+
+<hr>
+
+- examine the distribution of a variable  
+- detect outliers, boxplots are very handy
+
+### Example
+
+<hr>
+
+```{r geoms13eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot()
+```
+
+### Instructions
+
+<hr>
+
+- set `x` to `device`
+- set `y` to `n_pages`
+- represent the data using a `boxplot`
+
+```{r geoms13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+ggplot(ecom, aes(x = factor(), y = )) +
+  
+```
+
+```{r geoms13-solution}
+ggplot(ecom, aes(x = factor(device), y = n_pages)) +
+  geom_boxplot()
+```
+
+## Histogram - Part 1
+
+### Introduction
+
+<hr>
+
+Histograms are used to examine:
+
+- distribution of a continuous variable
+- skewness and kurtosis
+
+### Example
+
+<hr>
+
+```{r geoms15eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram()
+```
+
+### Instructions
+
+<hr>
+
+- set `x` to `duration`
+- represent the data using a histogram
+
+```{r geoms15, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+ggplot(ecom, aes(x = )) +
+  
+```
+
+```{r geoms15-solution}
+ggplot(ecom, aes(x = duration)) +
+  geom_histogram()
+```
+
+## Histogram - Part 2
+
+### Bins
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r geoms16eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(bins = 5)
+```
+
+### Instructions
+
+<hr>
+
+- set `x` to `duration`
+- represent the data using a histogram
+- set the number of bins to 5
+
+```{r geoms16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram Bins'}
+ggplot(ecom, aes(x = )) +
+  
+```
+
+```{r geoms16-solution}
+ggplot(ecom, aes(x = duration)) +
+  geom_histogram(bins = 5)
+```
+
+## Line - Part 1
+
+### Introduction
+
+<hr>
+
+Line charts are used to examine trends over time.
+
+
+### Data
+
+<hr>
+
+```{r import2, , exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+gdp
+```
+
+### Example
+
+<hr>
+
+```{r geomslineeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(gdp, aes(year, china)) +
+  geom_line()
+```
+
+## Line - Part 2
+
+### Instructions
+
+<hr>
+
+- set `x` to `year`
+- set `y` to `india`
+- represent the data using a line 
+
+```{r geomline1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Line Chart'}
+ggplot(gdp, aes(x = ___, y = ___ )) +
+ 
+```
+
+```{r geomline1-solution}
+ggplot(gdp, aes(year, india)) +
+  geom_line()
+```
+
+## Label
+
+<hr>
+
+### Instructions
+
+<hr>
+
+
+```{r geoms20, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Label'}
+ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_label()
+```
+
+## Text
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r geoms19, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Text'}
+ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_text()
+```
+
