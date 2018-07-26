@@ -8,8 +8,6 @@ runtime: shiny_prerendered
 library(learnr)
 library(readxl)
 library(haven)
-library(foreign)
-library(sas7bdat)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -103,7 +101,7 @@ Alright! We now know how to read data from an excel sheet but we may not want to
 
 <br>
 <center>
-![](srv/shiny-server/import-data-in-r-part-2/images/readxl_range.png){width=80%}
+![](/srv/shiny-server/import-data-in-r-part-2/images/readxl_range.png){width=80%}
 </center>
 <br>
 
@@ -199,7 +197,7 @@ use `cell_limits()` to specify the initial cell and the number of rows and colum
 <br>
 
 ```{r import74-eg, echo=TRUE, eval=FALSE,  collapse=FALSE}
-read_excel('sample.xls', sheet = 1,
+read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1,
   range = cell_limits(c(1, 1), c(6, 4)))
 ```
 
@@ -328,7 +326,7 @@ Stata files have the extension `.dta` and can be read using either `read_dta()` 
 ```
 
 ```{r import68-solution}
-read_stata('airline.dta')  
+read_stata('//home//hebbali_aravind//datasets//airline.dta')  
 ```
 
 ## SPSS
@@ -353,7 +351,7 @@ SPSS files have the extension `.sav` and can be read using either `read_sav()` o
 ```
 
 ```{r import71-solution}
-read_spss('employee.sav')  
+read_spss('//home//hebbali_aravind//datasets//employee.sav')  
 ```
 
 ## SAS
@@ -378,5 +376,5 @@ SAS files have the extension `.sas7bdat` and can be read using either `read_sas(
 ```
 
 ```{r import73-solution}
-read_sas('airline.sas7bdat')
+read_sas('//home//hebbali_aravind//datasets//airline.sas7bdat')
 ```
