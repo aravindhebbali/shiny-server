@@ -179,7 +179,7 @@ read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = cnames)
 <hr>
 
 <br>
-![](/srv/shiny-server/test/images/mtcars_skip.png){width=80%}
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_skip.png){width=80%}
 <br>
 
 ## Skip Lines
@@ -244,6 +244,23 @@ read_csv('directory_path/file_name.csv', n_max = 100)
 read_csv('//home//hebbali_aravind//datasets//hsb2.csv', n_max = 120)
 ```
 
+## Column Specification
+
+<hr>
+
+If you observed the output when we read data in the previous tab, it includes the data type detected for each column in the file. When you read data using readr, it will display the data type detected for each column/variable in the data set. If you want to check the data types before reading the data, use `spec_csv()`. We will learn to specify the column types in the next section.
+
+<br>
+
+### Instructions
+
+<hr>
+
+- run the below code and observe the output
+
+```{r import3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Introduction', message = FALSE, exercise.lines=5}
+spec_csv('//home//hebbali_aravind//datasets//hsb2.csv')
+```
 
 ## Summary
 
