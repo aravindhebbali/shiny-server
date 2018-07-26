@@ -173,3 +173,43 @@ cnames <- c("id", "female", "race", "ses", "schtyp", "prog", "read", "write", "m
 cnames <- c("id", "female", "race", "ses", "schtyp", "prog", "read", "write", "math", "science", "socst")
 read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = cnames)
 ```
+
+## Skip Lines
+
+<hr>
+
+<br>
+![](/srv/shiny-server/test/images/mtcars_skip.png){width=80%}
+<br>
+
+## Skip Lines
+
+<hr>
+
+If the file has contents other than data in the first few lines, we need to skip them before reading the data. Use `skip` to skip a certain number of lines. For example, the below example shows how to skip the first 5 lines of a file.
+
+```{r import8-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_csv('directory_path/file_name.csv', skip = 5)
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read data from `hsb4.cv` file
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- <a href="https://github.com/rsquaredacademy/datasets/blob/master/hsb4.csv" target="_blank">click here</a> to check if the file has any text/info before data
+- if any text/info is present before data, count the number of rows covered by the text
+- use `skip` argument to skip the text/info and read from the row where the column names are present
+
+```{r import8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Skip Lines', exercise.lines=5}
+# read data after skipping the required number of rows
+
+
+```
+
+```{r import8-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb4.csv', skip = 3)
+```
