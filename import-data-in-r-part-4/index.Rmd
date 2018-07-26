@@ -138,3 +138,38 @@ read_csv('directory_path/file_name.csv', col_names = FALSE)
 ```{r import1-solution}
 read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = FALSE)
 ```
+
+## Column Names
+
+<hr>
+
+We learnt how to indicate whether file includes column names or not. What if we want to specify names for the columns while reading data from the file. `col_names` can be used to specify column names as well. All that we need to do is to store the names as a character vector and supply it to `col_names`. Assume you are reading data from a file and need to specify column names, the below example shows how to do it.
+
+```{r import4eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+column_names <- c('col_1', 'col_2', 'col_3')
+read_csv('directory_path/file_name.csv', col_names = column_names)
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read data from `hsb3.csv` 
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- use `cnames` provided below to specify the column names 
+
+```{r import4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Names', exercise.lines=5}
+# column names
+cnames <- c("id", "female", "race", "ses", "schtyp", "prog", "read", "write", "math", "science", "socst")
+
+# read data
+
+
+```
+
+```{r import4-solution}
+cnames <- c("id", "female", "race", "ses", "schtyp", "prog", "read", "write", "math", "science", "socst")
+read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = cnames)
+```
