@@ -107,3 +107,34 @@ Sometimes you may get an error while reading data from a file. In such case try 
 <br>
 ![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_column_false.png){width=60%}
 <br>
+
+## Column Names
+
+<hr>
+
+Use `col_names` to indicate whether the data includes column names. It takes two values, `TRUE` and `FALSE`. If set to `FALSE`, readr will generate column names. The below code reads data from a file which does not have column names present in the first row.
+
+```{r import1-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_csv('directory_path/file_name.csv', col_names = FALSE)
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read data from `hsb3.csv` 
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- <a href="https://github.com/rsquaredacademy/datasets/blob/master/hsb2.csv" target="_blank">click here</a> to check if the file has column names
+- if column names are absent, indicate it while reading data
+
+```{r import1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Names', exercise.lines=5}
+# read data
+
+
+```
+
+```{r import1-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = FALSE)
+```
