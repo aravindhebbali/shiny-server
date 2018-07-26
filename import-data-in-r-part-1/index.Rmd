@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Comma Separated Values
 
 <br>
-![](/images/mtcars_comma.png){width=60%}
+![](/srv/shiny-server/test/images/mtcars_comma.png){width=60%}
 <br>
 
 <br>
@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Semi Colon Separated Values
 
 <br>
-![](/images/mtcars_semicolon.png){width=60%}
+![](/srv/shiny-server/test/images/mtcars_semicolon.png){width=60%}
 <br>
 
 <br>
@@ -45,7 +45,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Space Separated Values
 
 <br>
-![](/images/mtcars_space.png){width=60%}
+![](/srv/shiny-server/test/images/mtcars_space.png){width=60%}
 <br>
 
 <br>
@@ -53,7 +53,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Tab Separated Values
 
 <br>
-![](/images/mtcars_tab.png){width=60%}
+![](/srv/shiny-server/test/images/mtcars_tab.png){width=60%}
 <br>
 
 ## Read Data
@@ -99,14 +99,14 @@ Sometimes you may get an error while reading data from a file. In such case try 
 #### Column names are present
 
 <br>
-![](/images/mtcars_comma.png){width=60%}
+![](/srv/shiny-server/test/images/mtcars_comma.png){width=60%}
 <br>
 <br>
 
 #### Column names are absent
 
 <br>
-![](/images/mtcars_column_false.png){width=60%}
+![](/srv/shiny-server/test/images/mtcars_column_false.png){width=60%}
 <br>
 
 ## Column Names
@@ -180,7 +180,7 @@ read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = cnames)
 <hr>
 
 <br>
-![](/images/mtcars_skip.png){width=80%}
+![](/srv/shiny-server/test/images/mtcars_skip.png){width=80%}
 <br>
 
 ## Skip Lines
@@ -271,7 +271,7 @@ In certain cases, we need to specify the data type of the columns. It might be r
 
 <br>
 <center>
-![](/images/column_types_list_canva.png){width=80%}
+![](/srv/shiny-server/test/images/column_types_list_canva.png){width=80%}
 </center>
 <br>
 
@@ -281,7 +281,7 @@ In certain cases, we need to specify the data type of the columns. It might be r
 
 <br>
 <center>
-![](/images/column_objective_function_map.png){width=60%}
+![](/srv/shiny-server/test/images/column_objective_function_map.png){width=60%}
 </center>
 <br>
 
@@ -405,7 +405,7 @@ read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = cols_only(id
 
 <br>
 <center>
-![](/images/import_func.png){width=60%}
+![](/srv/shiny-server/test/images/import_func.png){width=60%}
 </center>
 <br>
 
