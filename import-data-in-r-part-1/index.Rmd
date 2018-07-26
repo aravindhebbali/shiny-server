@@ -262,6 +262,144 @@ If you observed the output when we read data in the previous tab, it includes th
 spec_csv('//home//hebbali_aravind//datasets//hsb2.csv')
 ```
 
+## Column Types 
+
+<hr>
+
+In certain cases, we need to specify the data type of the columns. It might be related to dates or categorical variables. readr allows us to specify the data types using `col_xxx` functions which include:
+
+<br>
+<center>
+![](/srv/shiny-server/import-data-in-r-part-1/images/column_types_list_canva.png){width=80%}
+</center>
+<br>
+
+## Column Types 
+
+<hr>
+
+<br>
+<center>
+![](/srv/shiny-server/import-data-in-r-part-1/images/column_objective_function_map.png){width=60%}
+</center>
+<br>
+
+To specify the data types, we will use `col_types` argument and supply to it a list indicating the data type (using `col_xxx`) of each column in the data set. 
+
+## Column Types
+
+<hr>
+
+In the below example, we read data from `mtcars5.csv` file while specifying the data types. Keep in mind that we need to specify the data type for each column. 
+
+```{r import6-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
+read_csv('//home//hebbali_aravind//datasets//', 
+         col_types = list(col_double(), col_factor(levels = c(4, 6, 8)),
+                          col_double(), col_integer()))
+```                          
+
+### Instructions
+
+<hr>
+
+- read data from `hsb5.csv` file
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- specify the column types for each column in the file
+
+```{r import6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Column Types', exercise.lines=5}
+# read data while specifying column types
+
+
+```
+
+```{r import6-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = list(
+  col_integer(), col_factor(levels = c(0, 1)), 
+  col_factor(levels = c(1, 2, 3, 4)), col_factor(levels = c(1, 2, 3)), 
+  col_factor(levels = c(1, 2)), col_factor(levels = c(1, 2, 3)),
+  col_integer(), col_integer(), col_integer(), col_integer(),
+  col_integer())            
+)
+```
+
+## Specific Columns
+
+<hr>
+
+We may not always want to read all the columns from a file. In such cases, we can specify the columns to be read using `col_types` argument and supplying to it the names of the columns to be read. We will use `cols_only()` to specify the column names and their respective data types.
+
+```{r import7-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
+read_csv('//home//hebbali_aravind//datasets//mtcars5.csv', 
+         col_types = cols_only(mpg = col_double(), 
+                               cyl = col_factor(levels = c(4, 6, 8))))
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read data from `hsb2.csv` file
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- read the following columns only
+    - id
+    - prog
+    - read
+
+```{r import7, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Read Specific Columns', exercise.lines=5}
+# read columns id, prog and read from hsb2.csv
+
+
+
+```
+
+```{r import7-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = cols_only(id = col_integer(),
+  prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
+)
+```
+
+## Skip Columns
+
+<hr>
+
+Sometimes we may want to skip some columns while reading data i.e. uppose we have 10 columns and we want to read only 8 columns. In such cases, we can use `cols_skip()` to specify the columns that must be skipped while reading the data.
+
+```{r import9-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
+read_csv('//home//hebbali_aravind//datasets//mtcars5.csv', 
+         col_types = list(col_double(), col_factor(levels = c(4, 6, 8)),
+                          col_skip(), col_integer()))
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read data from `hsb5.csv` file
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- skip the following columns
+    - id
+    - prog
+    - read
+
+```{r import9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Skip Columns', exercise.lines=5}
+# read columns id, prog and read from hsb2.csv
+
+
+
+```
+
+```{r import9-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', col_types = cols_only(id = col_integer(),
+  prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
+)
+```
+
+
+
 ## Summary
 
 <hr>
