@@ -1,0 +1,405 @@
+---
+title: "Scatter Plot"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- build scatter plots
+- modify point
+    - color
+    - fill
+    - alpha
+    - shape
+    - size
+- fit regression line
+
+
+## Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r scat2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+```
+
+### Instruction
+
+<hr>
+
+- map `x` to `disp`
+- map `y` to `mpg`
+
+```{r scat2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Scatter Plot'}
+# scatter plot of disp and mpg
+```
+
+```{r scat2-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+```
+
+## Aesthetics
+
+### Introduction
+
+<hr>
+
+Now let us modify the aesthetics of the points. There are two ways:
+
+- map them to variables using the `aes()` function
+- specify values
+
+## Color
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r scat4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl)))
+```
+
+### Instructions
+
+<hr>
+
+- map `color` to `cyl`
+
+```{r scat4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# map color to cyl
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, _____)
+```
+
+### Example
+
+<hr>
+
+```{r scat4aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp))
+```
+
+### Instructions
+
+<hr>
+
+- map `color` to `hp`
+
+```{r scat4a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# map color to cyl
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, _____)
+```
+
+### Example
+
+<hr>
+
+```{r scat4beg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue')
+```
+
+### Instructions
+
+<hr>
+
+- set `color` to `'blue'`
+
+```{r scat4b, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# set color to 'blue'
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), _____)
+```
+
+### Example
+
+<hr>
+
+```{r scat4ceg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue', alpha = 0.4)
+```
+
+### Instructions
+
+<hr>
+
+- set `color` to `'blue'` and `alpha` to `0.4`
+
+```{r scat4c, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# set color to 'blue' and alpha to 0.4
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), _____, _____)
+```
+
+
+```{r scat4-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl)))
+```
+
+```{r scat4a-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp))
+```
+
+```{r scat4b-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue')
+```
+
+```{r scat4c-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue', alpha = 0.4)
+```
+
+
+## Shape
+
+<hr>
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r scat8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl)))
+```
+
+### Instructions
+
+<hr>
+
+- map `shape` to `cyl`
+
+```{r scat8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+# set shape to 3
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), ____)
+```
+
+### Example
+
+<hr>
+
+```{r scat8aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), shape = 3)
+```
+
+### Instructions
+
+<hr>
+
+- set `shape` to `3`
+
+```{r scat8a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+# set shape to 3
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), ____)
+```
+
+```{r scat8-solution}
+# map shape to cyl
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl)))
+```
+
+```{r scat8a-solution}
+# set shape to 3
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), shape = 3)
+```
+
+
+## Size
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r scat10eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp))
+```
+
+### Instructions
+
+<hr>
+
+- map `size` to `hp`
+
+```{r scat10, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, ____))
+```
+
+### Example
+
+<hr>
+
+```{r scat10aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), size = 3)
+```
+
+### Instructions
+
+<hr>
+
+- set `size` to `3`
+
+```{r scat10a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), ____)
+```
+
+```{r scat10-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp))
+```
+
+```{r scat10a-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), size = 3)
+```
+
+## Fit Line
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r scat12eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(method = 'lm', se = FALSE)
+```
+
+### Example
+
+<hr>
+
+```{r scat12aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(method = 'lm', se = TRUE)
+```
+
+### Example
+
+<hr>
+
+```{r scat12beg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(method = 'loess', se = FALSE)
+```
+
+### Example
+
+<hr>
+
+```{r scat12ceg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_abline(slope = 29.59985, intercept = -0.04122)
+```
+
+## Fit Line - Practice
+
+<hr>
+
+### Instructions
+
+<hr>
+
+```{r aes12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression Line'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(_____, _____)
+```
+
+### Instructions
+
+<hr>
+
+```{r aes12a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression Line'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(_____, _____)
+```
+
+### Instructions
+
+<hr>
+
+```{r aes12b, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression Line'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(_____, _____)
+```
+
+### Instructions
+
+<hr>
+
+```{r aes12c, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression Line'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_abline(_____, _____)
+```
+
+
+```{r aes12-solution}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(method = 'lm', se = FALSE)
+```
+
+```{r aes12a-solution}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(method = 'lm', se = TRUE)
+```  
+
+```{r aes12b-solution}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_smooth(method = 'loess', se = FALSE)
+```  
+
+```{r aes12c-solution}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_abline(slope = 29.59985, intercept = -0.04122)
+```

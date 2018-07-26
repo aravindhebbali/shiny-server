@@ -1,0 +1,270 @@
+---
+title: "Box Plot"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- build box plots
+- modify box 
+    - color
+    - fill
+    - alpha
+    - line size
+    - line type
+- modify outlier 
+    - color
+    - shape 
+    - size 
+    - alpha
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r import, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+## Plot - Part 1
+
+### Univariate Box Plot
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(1), y = n_visit))
+```
+
+### Instructions
+
+<hr>
+
+```{r box2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Univariate Box Plot'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(1), y = n_visit))
+```
+
+```{r box2-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(1), y = n_visit))
+```
+
+## Plot - Part 2
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit))
+```
+
+### Instructions
+
+<hr>
+
+```{r box3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Box Plot'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit))
+```
+
+```{r box3-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit))
+```
+
+## Horizontal Box Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit)) +
+  coord_flip()
+```
+
+### Instructions
+
+<hr>
+
+```{r box4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Horizontal Box Plot'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit)) +
+  coord_flip()
+```
+
+```{r box4-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit)) +
+  coord_flip()
+```
+
+## Notch
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r box5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit),
+               notch = TRUE) 
+```
+
+### Instructions
+
+<hr>
+
+```{r box5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Notch'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit),
+               notch = TRUE) 
+```
+
+```{r box5-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = n_visit),
+               notch = TRUE) 
+```
+
+## Outliers - Introduction
+
+### Introduction
+
+<hr>
+
+- color
+- shape
+- size
+- alpha
+
+## Outliers - Practice
+
+### Instructions
+
+<hr>
+
+```{r box7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Outlier Color'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration),
+               outlier.color = 'red', outlier.shape = 23, outlier.size = 3)
+```
+
+```{r box7-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration),
+               outlier.color = 'red', outlier.shape = 23, outlier.size = 3)
+```
+
+## Fill & Color
+
+### Introduction
+
+<hr>
+
+## Fill & Color - Practice 1
+
+### Instructions
+
+<hr>
+
+```{r box12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Values for Fill'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration),
+               fill = c('blue', 'red', 'green')) 
+```
+
+```{r box12-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration),
+               fill = c('blue', 'red', 'green')) 
+```
+
+## Fill & Color - Practice 2
+
+### Instructions
+
+<hr>
+
+```{r box13, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Fill to Variable'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration,
+               fill = factor(device))) 
+```
+
+```{r box13-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration,
+               fill = factor(device))) 
+```
+
+## Fill & Color - Practice 3
+
+### Instructions
+
+<hr>
+
+```{r box16, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Color to Variables'}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration,
+               color = factor(device))) 
+```
+
+```{r box16-solution}
+ggplot(ecom) +
+  geom_boxplot(aes(x = factor(device), y = duration,
+               color = factor(device))) 
+```

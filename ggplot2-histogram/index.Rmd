@@ -1,0 +1,232 @@
+---
+title: "Histogram"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- build histogram
+- specify bins
+- modify 
+    - color
+    - fill
+    - alpha
+    - bin width
+    - line type
+    - line size
+- map aesthetics to variables
+
+## Data 
+
+### Introduction
+
+<hr>
+
+```{r import, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+## Plot
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r hist2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit))
+```
+
+### Instructions
+
+<hr>
+
+```{r hist2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Histogram'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit))
+```
+
+```{r hist2-solution}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit))
+```
+
+## Specify Bins
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r hist4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7)
+```
+
+### Instructions
+
+<hr>
+
+```{r hist4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Specify Bins'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7)
+```
+
+```{r hist4-solution}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7)
+```
+
+## Fill - Part 1
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r hist3eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'blue')
+```
+
+### Instructions
+
+<hr>
+
+```{r hist3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'blue')
+```
+
+```{r hist3-solution}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'blue')
+```
+
+## Fill - Part 2
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r hist7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit, fill = device), bins = 7)
+```
+
+### Instructions
+
+<hr>
+
+```{r hist7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Map Fill to Variable'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit, fill = device), bins = 7)
+```
+
+```{r hist7-solution}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit, fill = device), bins = 7)
+```
+
+## Color
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r hist8eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')
+```
+
+### Instructions
+
+<hr>
+
+```{r hist8, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')
+```
+
+```{r hist8-solution}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')
+```
+
+## Bin Width
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r hist5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), binwidth = 2, fill = 'blue', color = 'black')
+```
+
+### Instructions
+
+<hr>
+
+```{r hist5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bin Width'}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), binwidth = 2, fill = 'blue', color = 'black')
+```
+
+```{r hist5-solution}
+ggplot(ecom) +
+  geom_histogram(aes(n_visit), binwidth = 2, fill = 'blue', color = 'black')
+```
