@@ -1,0 +1,144 @@
+---
+title: "Introduction to ggplot2"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Agenda
+
+<hr>
+
+- understand the philosophy of Grammar of Graphics
+- explore different aspects of ggplot2
+- learn to build some of the basic plots regularly used for exploring data
+
+
+## Introduction
+
+[ggplot2](http://ggplot2.tidyverse.org/index.html) is an **awesome** alternative to base R for data visualization. It is based on 
+[The Grammar of Graphics](http://www.springer.com/in/book/9780387245447). In this post, we will understand the philosophy behind **ggplot2** and learn to build some of the most frequently used plots for visualizing data. 
+
+
+### Grammar of Graphics
+
+<hr>
+
+Grammar of Graphics is a formal system for building plots. The core idea is that any plot can be uniquely described as a combination of
+
+- a dataset
+- a geom
+- a set of mappings
+- a statistic
+- a position adjustment
+- a coordinate system
+- a faceting scheme
+
+
+## Data
+
+<hr>
+
+Let us build a scatter plot from scratch using the `mtcars` data. We will build the plot incrementally and understand the 
+above layers. The first step in any data visualization exercise is to identify the data set. In `ggplot2`, we can 
+specify the data set using `ggplot()`.
+
+```{r gg1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ggplot(data = mtcars) 
+```
+
+If you observe, `ggplot()` does not generate any plot, it just creates a coordinate system. 
+
+## Geom
+
+<hr>
+
+After specifying the data set, we have to decide how the data will be visualized. We will do this using  `geoms`. It basically details the geometric shapes that must be used to display the data. In our case, we want the data to displayed as `points`. 
+
+There are several `geoms` and we will explore them one by one. For the time time being, let us use `geom_point()`. This tells ggplot2 it must use points to represent the data. The next step is to specify the variables that will be represented by the `X` and `Y` axis. To do this we will use `mapping` and `aes`. 
+
+`aes` is the short for aesthetics. Using `mapping`, we can map variables to aesthetics. We specify the aesthetic type and the corresponding variable within `aes`.In our example, we want the `X` axis to be represented by `disp` and `Y` axis by `mpg`. ggplot2 will search for these variables in the data we have provided in `ggplot` which is `mtcars`. If ggplot2 can't find the variables, it will return an error.
+
+So far we have provided:
+
+- data set
+- geometric shape to represent data
+- variables to represent `X` and `Y` axis
+
+The above layers are the bare minimum required to create a plot in ggplot2.
+
+```{r gg2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg))
+```
+
+## Aesthetics
+
+What are aesthetics?
+
+- `x`
+- `y`
+- `shape`
+- `size`
+- `color`
+- `fill`
+- `alpha`
+- `linetype`
+
+Aestheics are the visual properties of the objects in the plot. We can display the geometric object in different ways by
+changing the values of its aesthetic properties.
+
+### Color
+
+```{r gg3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, color = cyl))
+```
+
+### Shape
+
+```{r gg4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, shape = gear))
+```
+
+### Size
+
+```{r gg5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Bar Plot'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, size = hp))
+```
+
+## Stat
+
+Some graphs plot the raw data set, but others like bar plot, box plot and histograms compute new values and plot them.
+In this section, we will look at how the data is transformed. 
+
+- `stat_count`
+- `stat_boxplot`
+- `stat_bin`
+- `stat_summary`
+
+## Position
+
+- `position_dodge`
+- `position_identity`
+- `position_jitter`
+- `position_fill`
+
+## Coordinate System
+
+Default is the cartesian coordinate system.
+
+- `coord_flip`
+- `coord_polar`
+
+## Facet
+
+- `facet_grid`
+- `facet_wrap`
