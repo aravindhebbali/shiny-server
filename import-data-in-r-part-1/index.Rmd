@@ -90,3 +90,20 @@ Sometimes you may get an error while reading data from a file. In such case try 
 
 - check the separator in the file and ensure it is a `comma`
 - check the path to the directory where the file resides
+
+## Column Names
+
+<hr>
+
+#### Column names are present
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_comma.png){width=60%}
+<br>
+<br>
+
+#### Column names are absent
+
+<br>
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_column_false.png){width=60%}
+<br>
