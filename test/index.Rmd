@@ -42,6 +42,6 @@ This code computes the answer to one plus one, change it so it computes two plus
 #### Comma Separated Values
 
 <br>
-![](/images/mtcars_comma.png){width=60%}
+![](//images//mtcars_comma.png){width=60%}
 <br>
 
