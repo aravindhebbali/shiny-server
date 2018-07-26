@@ -1,0 +1,553 @@
+---
+title: "Readable Code with Pipes"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(dplyr)
+library(magrittr)
+library(readr)
+knitr::opts_chunk$set(echo = FALSE)
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+```
+
+## Introduction
+
+<hr>
+
+When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The [magrittr](https://CRAN.R-project.org/package=magrittr) package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+
+- especially useful when you have nested functions
+- similar in spirit to javascript's method chaining
+- functions taking multiple arguments can be confusing and messy to read
+- with magrittr, you program from left to right
+
+## Pipes
+
+<hr>
+
+R being a functional language, code contains a lot of parentheses. Complex code results in nested functions making them hard to read and maintain. If you are using tidyverse packages, magrittr will be automatically loaded. We will look at 3 different types of 
+pipes:
+
+- `%>%` : pipe a value forward into an expression or function call
+- `%<>%`: result assigned to left hand side object instead of returning it 
+- `%$%` : expose names within left hand side objects to right hand side expressions
+
+## Data
+
+### View Data
+
+<hr>
+
+```{r show, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'View Data'}
+ecom
+```
+
+## Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+## %>%
+
+## %<>%
+
+## %$%
+
+### Instructions
+
+<hr>
+
+- use `%>%` and `tail()` to get the last 10 rows of `mtcars`
+
+```{r mag1, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'View Data'}
+head(ecom, 10)
+
+# using pipe
+ecom %>% head(10)
+
+# tail
+
+```
+
+```{r mag1-solution}
+mtcars %>% tail(10)
+```
+
+## Square Root 
+
+### Introduction
+
+<hr>
+
+```{r mag3, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Square Root'}
+y <- ecom$n_pages
+y <- sqrt(y)
+y
+```
+
+## Square Root - Using Pipe 1
+
+<hr>
+
+Now let us learn how to compute square root using pipe operators. In the above example, we have done two things:
+
+- assign `n_pages` to `y` using `$`
+- compuate square root of `y` and assign the result to `y` itself
+
+We can assign expose a column from a data set using the `%$%` operator. For example, `y <- mtcars %$% mpg` will assign `mpg` to `y`.
+Similarly, we can assign the result of an operation performed on a variable to itself using `%<>%` operator. Let us assume you want to  assign the absolute value of a variable to itself. This is how you would do it normally:
+
+`y <- abs(y)`
+
+Using `%<>%` operator, this is how you will achieve it:
+
+`y %<>% abs()`
+
+### Instructions
+
+<hr>
+
+- use `%$%` to assing `n_pages` from `ecom` to `y`
+- use `%<>%` to compute square root of `y` and assign it to `y`
+
+```{r mag4, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Square Root'}
+# select n_pages variable and assign it to y
+y <- ecom 
+
+# compute square root of y and assign it to y 
+y 
+```
+
+```{r mag4-solution}
+# select n_pages variable and assign it to y
+y <- ecom %$% n_pages
+
+# compute square root of y and assign it to y 
+y %<>% sqrt()
+```
+
+
+## Square Root - Using Pipe 2
+
+<hr>
+
+In the first example, we computed the square root of `y` in two steps while we could have achieved it in a single step like this:
+
+`y <- sqrt(econ$n_pages)`
+
+What we are doing above is:
+
+- select `n_pages` from `econ`
+- pass it on to `sqrt()`
+- assign the result to `y`
+
+### Instructions
+
+<hr>
+
+Let us try to do this using pipes:
+
+- expose `n_pages` from `econ` using `%$%`
+- pass it on to `sqrt()` using `%>%`
+- assign the result to `y`
+
+We have written the first part for you.
+
+```{r mag5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Square Root'}
+y <- ecom %$% 
+  n_pages
+```
+
+```{r mag5-solution}
+y <- ecom %$% 
+  n_pages %>% 
+  sqrt()
+```
+
+## Correlation
+
+### Introduction
+
+<hr>
+
+From the ecommerce data, we want to explore the relationship between number of visits and time spent on the site for those who
+purchase/convert. We can achieve this in the following steps:
+
+- filter data for those who have purchased/converted
+- compute correlation by selecting `n_visit` and `duration`
+
+```{r mag32, eval=FALSE, echo=TRUE}
+ecom1 <- subset(ecom, purchase == 'true')
+cor(ecom1$n_visit, ecom1$duration)
+```
+
+## Correlation - Using pipe
+
+We can chain functions using pipe operators. For example, using `mtcars`, to compute the average miles per gallon for cars with eight cylinders we will write:
+
+```{r mag33, eval=FALSE, echo=TRUE}
+mtcars %>% 
+  subset(cyl == 8) %$% 
+  mean(mpg)
+```
+
+This is how you can read the above code:
+
+- filter data from `mtcars` where `cyl == 8` using `subset()`
+- from the filtered data set expose `mpg` using `%$%` and pass it into `mean()`
+
+### Instructions
+
+Let us use pipe operators to compute the correlation between `n_visit` and `duration`:
+
+- filter data for those who have purchased (`purchase == 'true'`) using `subset()` and `%>%`
+- expose `n_visit` and `duration` using `%$%` and pass them onto `cor()`
+
+
+```{r mag6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Correlation'}
+# with pipe
+ecom %>%
+  subset(purchase == 'true') 
+```
+
+```{r mag6-solution}
+# with pipe
+ecom %>%
+  subset(purchase == 'true') %$% 
+  cor(n_visit, duration)
+```
+
+## Visualization
+
+### Introduction
+
+<hr>
+
+Let us look at a visualization example. From the ecommerce data set, we have the distribution of referrers (for those who have purchased/converted). We can decompose the code into the following steps:
+
+- `subset` data for those who have purchased/converted
+- extract the referrer column using `$`
+- compute the frequency using `table()`
+- pass the data to `barplot()`
+
+```{r mag21, fig.align='center', fig.height=4, fig.width=6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Visualize'}
+barplot(table(subset(ecom, purchase == 'true')$referrer))
+```
+
+## Visualization - Using Pipe
+
+<hr>
+
+Let us build a barplot from `mtcars` data.
+
+```{r mag30, eval=FALSE, echo=TRUE}
+# without pipe
+barplot(table(subset(mtcars, cyl == 8)$am))
+
+# with pipe
+mtcars %>%`
+  subset(cyl == 8) %$%
+  am %>%
+  table() %>%
+  barplot()
+```
+## Visualization - Practice
+
+### Instructions
+
+<hr>
+
+Let us now use pipes to build the same plot. We have written the partial code for you:
+
+- pass on the referrer data to `table()` using `%>%`
+- pass on the result from the previous step to `barplot()` using `%>%`
+
+```{r mag7, fig.align='center', fig.height=4, fig.width=6, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Visualize - Using Pipe'}
+ecom %>%
+  subset(purchase == 'true') %$%
+  referrer
+
+
+```
+
+```{r mag7-solution}
+ecom %>%
+  subset(purchase == 'true') %$%
+  referrer %>%
+  table() %>%
+  barplot()
+```
+
+## Regression
+
+### Introduction
+
+<hr>
+
+```{r mag8, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression'}
+summary(lm(duration ~ n_pages, data = ecom))
+```
+
+## Regression - Using Pipe
+
+<hr>
+
+```{r mag31, eval=FALSE, echo=TRUE}
+# without pipe
+summary(lm(disp ~ mpg, data = mtcars))
+
+# with pipe
+mtcars %$%`
+  lm(disp ~ mpg) %>%
+  summary()
+```
+
+## Regression - Practice
+
+### Instructions
+
+<hr>
+
+- expose `duration` and `n_pages` from `ecom` using `%$%` 
+- pass them onto `lm()` 
+- pass the result from `lm()` to `summary()` using `%>%`
+
+```{r mag22, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Regression - Using Pipe'}
+ecom %$%
+  
+```
+
+```{r mag22-solution}
+ecom %$%
+  lm(duration ~ n_pages) %>%
+  summary()
+```
+
+## String Manipulation
+
+### Introduction
+
+<hr>
+
+```{r mag9, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'String Manipulation'}
+email <- 'jovialcann@anymail.com'
+
+# without pipe
+toupper(strtrim(strsplit(email, '@')[[1]][1], 6))
+```
+
+## String Manipulation - With Pipe
+
+### Instructions
+
+```{r mag99, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'String Manipulation'}
+email %>%
+  strsplit(split = '@') %>%
+  extract2(1) %>%
+  extract(1) %>%
+  strtrim(width = 6) %>%
+  toupper()
+```
+
+## Data Extraction
+
+### Introduction
+
+<hr>
+
+- `extract()`
+- `extract2()`
+- `use_series()`
+
+## Extract Column By Name
+
+<hr>
+
+```{r mag10, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column'}
+head(ecom['n_pages'], 3)
+
+ecom %>%
+  extract('n_pages') %>%
+  head(3)
+```
+
+## Extract Column By Position
+
+<hr>
+
+```{r mag23, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column'}
+head(ecom[6], 3)
+
+ecom %>%
+  extract(6) %>%
+  head(3)
+```
+
+## Extract Column (as vector)
+
+<hr>
+
+```{r mag11, , exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract Column'}
+head(ecom$n_pages)
+
+ecom %>%
+  use_series('n_pages') %>%
+  head()
+```
+
+## Extract List Element By Name
+
+<hr>
+
+```{r mag12, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract List Element'}
+mt <- as.list(mtcars)
+
+mt[['mpg']]
+
+mt %>%
+  extract2('mpg')
+```
+
+## Extract List Element By Position
+
+<hr>
+
+```{r mag13, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract List Element'}
+mt <- as.list(mtcars)
+
+mt[[1]]
+
+mt %>%
+  extract2(1)
+```
+
+## Extract List Element (as vector)
+
+<hr>
+
+```{r mag14, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Extract List Element'}
+mt <- as.list(mtcars)
+
+mt$mpg
+
+mt %>%
+  use_series(mpg)
+```
+
+## Arithmetic Operations
+
+### Introduction
+
+<hr>
+
+- `add()`
+- `subtract()`
+- `multiply_by()`
+- `multiply_by_matrix()`
+- `divide_by()`
+- `divide_by_int()`
+- `mod()`
+- `raise_to_power()`
+
+
+## Addition
+
+<hr>
+
+```{r mag15, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Addition'}
+1:10 %>%
+  `+`(1)
+
+1:10 %>%
+  add(1)
+```
+
+## Multiplication
+
+<hr>
+
+```{r mag16, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Multiplication'}
+1:10 %>%
+  `*`(3)
+
+1:10 %>%
+  multiply_by(3)
+```
+
+## Division
+
+<hr>
+
+```{r mag17, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Division'}
+1:10 %>%
+  `/`(2)
+
+1:10 %>%
+  divide_by(2)
+```
+
+## Power
+
+<hr>
+
+```{r mag18, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Power'}
+1:10 %>%
+  `^`(2)
+
+1:10 %>%
+  raise_to_power(2)
+```
+
+## Logical Operators
+
+### Introduction
+
+<hr>
+
+- `and()`
+- `or()`
+- `equals()`
+- `not()`
+- `is_greater_than()`
+- `is_weakly_greater_than()`
+- `is_less_than()`
+- `is_weakly_less_than()`
+
+## Greater Than
+
+<hr>
+
+```{r mag19, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Greater Than'}
+1:10 %>%
+  `>`(5)
+
+1:10 %>%
+  is_greater_than(5)
+```
+
+## Weakly Greater Than
+
+<hr>
+
+```{r mag20, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Weakly Greater Than'}
+1:10 %>%
+  `>=`(5)
+
+1:10 %>%
+  is_weakly_greater_than(5)
+```
+
