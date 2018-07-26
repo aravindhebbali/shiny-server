@@ -1,0 +1,410 @@
+---
+title: "ggplot2: Aesthetics"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+knitr::opts_chunk$set(echo = FALSE)
+# gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+# ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+# gdp2 <- gdp %>% 
+#  select(year, growth, india, china) %>% 
+#  gather(key = country, value = gdp, -year)
+```
+
+## Introduction
+
+In this module, we will focus on the aesthetics i.e. color, shape, size, alpha, line type, line width etc. We can map these to variables or specify values for them. If we want to map the above to variables, we have to specify them within the `aes()` function. We will look at both methods. Explore aesthetics such as 
+
+- color
+- shape
+- size
+- fill
+- alpha
+- width
+
+## Data
+
+### Introduction
+
+<hr>
+
+```{r use, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ecom
+```
+
+### Data Dictionary
+
+<hr>
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+## Color
+
+### Introduction
+
+<hr>
+
+### Map color to variable
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+# map color to variable
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(color = factor(gear)))
+```
+
+### Instructions
+
+<hr>
+
+- map `color` to `cyl`
+
+```{r aes2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# map color to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+```
+
+```{r aes2-solution}
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(color = factor(cyl)))
+```
+
+### Specify value for color
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes2aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+# map color to variable
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(color = 'red')
+```
+
+### Instructions
+
+<hr>
+
+- set `color` to `'blue'`
+
+```{r aes2a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+```
+
+```{r aes2a-solution}
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(color = 'blue')
+```
+
+
+## Shape
+
+### Introduction
+
+<hr>
+
+### Map shape to variable
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(shape = factor(gear)))
+```
+
+### Instructions
+
+<hr>
+
+- map `shape` to `cyl`
+
+```{r aes5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+# map shape to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+
+```
+
+```{r aes5-solution}
+# map shape to cyl
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(shape = factor(cyl)))
+```
+
+### Map shape to value
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes5aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 2)
+```
+
+
+### Instructions
+
+<hr>
+
+- set `shape` to `5`
+
+```{r aes5a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Shape'}
+# set shape to 5
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+```
+
+```{r aes5a-solution}
+# set shape to 5
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 5)
+```
+
+
+## Fill
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+### Instructions
+
+<hr>
+
+- set `fill` to `'blue'`
+
+```{r aes9, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+# set fill to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 5, fill = ____)
+```
+
+### Instructions
+
+<hr>
+
+- set `fill` to `'blue'`
+
+```{r aes9a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+# set fill to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, fill = ____)
+```
+
+### Instructions
+
+<hr>
+
+- map `fill` to `purchase`
+
+```{r aes9b, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+# map fill to purchase
+ggplot(ecom) +
+  geom_bar(aes(device, fill = ____))
+```
+
+### Instructions
+
+<hr>
+
+- set `fill` to `'blue'`
+
+```{r aes9c, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Fill'}
+# set color to 'blue'
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, color = ____)
+```
+
+```{r aes9-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 5, fill = 'blue')
+```
+
+```{r aes9a-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, fill = 'blue')
+```
+
+```{r aes9b-solution}
+ggplot(ecom, aes(device, fill = purchase)) +
+  geom_bar()
+```
+
+```{r aes9c-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(shape = 22, color = 'blue')
+```
+
+
+## Size
+
+### Introduction
+
+<hr>
+
+### Map size to variable
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes12eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg, size = wt))
+```
+
+### Instructions
+
+<hr>
+
+- map `size` to `hp`
+
+```{r aes12, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg, ____))
+```
+
+```{r aes12-solution}
+ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg, size = hp))
+```
+
+### Map size to value
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes12aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg, size = 2))
+```
+
+### Instructions
+
+<hr>
+
+- set `size` to `4`
+
+```{r aes12a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(____)
+```
+
+```{r aes12a-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(size = 4)
+```
+
+
+## Alpha
+
+### Introduction
+
+<hr>
+
+### Map alpha to variable
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes14eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(alpha = factor(gear)), color = 'blue')
+```
+
+### Instructions
+
+<hr>
+
+- map `alpha` to `cyl`
+
+```{r aes14, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(______), color = 'blue')
+```
+
+```{r aes14-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(aes(alpha = factor(cyl)), color = 'blue')
+```
+
+### Map alpha to value
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r aes14aeg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(alpha = 0.7, color = 'blue')
+```
+
+
+### Instructions
+
+<hr>
+
+- set `alpha` to `0.3`
+
+```{r aes14a, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Alpha'}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(alpha = , color = 'blue')
+```
+
+```{r aes14a-solution}
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point(alpha = 0.3, color = 'blue')
+```
+
+
+
