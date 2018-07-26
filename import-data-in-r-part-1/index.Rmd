@@ -293,7 +293,7 @@ To specify the data types, we will use `col_types` argument and supply to it a l
 In the below example, we read data from `mtcars5.csv` file while specifying the data types. Keep in mind that we need to specify the data type for each column. 
 
 ```{r import6-eg, echo=TRUE, eval=TRUE, collapse=FALSE}
-read_csv('//home//hebbali_aravind//datasets//', 
+read_csv('//home//hebbali_aravind//datasets//mtcars5.csv', 
          col_types = list(col_double(), col_factor(levels = c(4, 6, 8)),
                           col_double(), col_integer()))
 ```                          
