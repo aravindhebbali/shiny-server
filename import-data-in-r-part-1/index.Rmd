@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Comma Separated Values
 
 <br>
-![](/srv/shiny-server/test/images/mtcars_comma.png){width=60%}
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_comma.png){width=60%}
 <br>
 
 <br>
@@ -37,7 +37,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Semi Colon Separated Values
 
 <br>
-![](/srv/shiny-server/test/images/mtcars_semicolon.png){width=60%}
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_semicolon.png){width=60%}
 <br>
 
 <br>
@@ -45,7 +45,7 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Space Separated Values
 
 <br>
-![](/srv/shiny-server/test/images/mtcars_space.png){width=60%}
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_space.png){width=60%}
 <br>
 
 <br>
@@ -53,6 +53,6 @@ knitr::opts_chunk$set(echo = FALSE)
 #### Tab Separated Values
 
 <br>
-![](/srv/shiny-server/test/images/mtcars_tab.png){width=60%}
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_tab.png){width=60%}
 <br>
 
