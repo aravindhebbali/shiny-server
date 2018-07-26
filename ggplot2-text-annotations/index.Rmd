@@ -1,0 +1,265 @@
+---
+title: "Text Annotations"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+### Agenda
+
+<hr>
+
+- add custom text 
+- modify color
+- modify size
+- modify fontface
+- modify angle
+
+## Overview
+
+### Introduction
+
+<hr>
+
+Use `annotate()` to add custom text to a plot. It takes the following arguments:
+
+- `geom`     : specify text
+- `x`        : x axis location
+- `y`        : y axis location
+- `label`    : custom text 
+- `color`    : color of text
+- `size`     : size of text
+- `fontface` : fontface of text
+- `angle`    : angle of text
+
+## Add Text
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r ann2eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text')
+```
+
+### Instructions
+
+<hr>
+
+- add `'New Text'` to the plot
+- set `x` coordinate to `300`
+- set `y` coordinate to `40`
+
+```{r ann2, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Add Text'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = ___, y = ___, label = _______)
+
+
+
+```
+
+```{r ann2-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'New Text')
+```
+
+## Color
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r ann4eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', color = 'red')
+```
+
+### Instructions
+
+<hr>
+
+- add `'New Text'` to the plot
+- set `x` coordinate to `300`
+- set `y` coordinate to `40`
+- set `color` to `'blue'`
+
+
+```{r ann4, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Color'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = ___, y = ___, label = _______, color = _____)
+  
+
+
+```
+
+```{r ann4-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', color = 'blue')
+```
+
+## Size
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r ann5eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', size = 6)
+```
+
+### Instructions
+
+<hr>
+
+- add `'New Text'` to the plot
+- set `x` coordinate to `300`
+- set `y` coordinate to `40`
+- set `size` to `9`
+
+
+```{r ann5, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Size'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = ___, y = ___, label = _______, size = ___)
+```
+
+
+```{r ann5-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', size = 9)
+```
+
+## Font
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r ann6eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', fontface = 'bold')
+```
+
+### Instructions
+
+<hr>
+
+- add `'New Text'` to the plot
+- set `x` coordinate to `300`
+- set `y` coordinate to `40`
+- set `font` to `'italic'`
+
+```{r ann6, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Font'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = ___, y = ___, label = _______, fontface = ___)
+```
+
+```{r ann6-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', fontface = 'italic')
+```
+
+## Angle
+
+### Introduction
+
+<hr>
+
+### Example
+
+<hr>
+
+```{r ann7eg, echo=TRUE, collapse=FALSE, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', angle = 25)
+```
+
+### Instructions
+
+<hr>
+
+- add `'New Text'` to the plot
+- set `x` coordinate to `300`
+- set `y` coordinate to `40`
+- set `angle` to `'45'`
+
+```{r ann7, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Angle'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = ___, y = ___, label = _______, angle = ___)
+```
+
+```{r ann7-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'Sample Text', angle = 25)
+```
+
+## Summary
+
+### Introduction
+
+<hr>
+
+### Instructions
+
+<hr>
+
+- set `label` to 'New Text'
+- set `x` coordinate to `400`
+- set `y` coordinate to `40`
+- set `color` to `'green'`
+- set `size` to `8`
+- set `fontface` to `'bold'`
+- set `angle` to `40`
+
+```{r ann3, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Annotate'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = __, y = ___, label = ___________,
+           color = _____, size = ____, fontface = ____, angle = ___)
+```
+
+```{r ann3-solution}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  annotate('text', x = 200, y = 30, label = 'New Text',
+           color = 'green', size = 8, fontface = 'bold', angle = 40)
+```
