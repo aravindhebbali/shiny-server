@@ -56,3 +56,37 @@ knitr::opts_chunk$set(echo = FALSE)
 ![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_tab.png){width=60%}
 <br>
 
+## Read Data
+
+<hr>
+
+Let us read data from a csv (comma separated values) file and explore the options listed in the previous section. To read a file named `xyz.csv`, you will do the following i.e. use `read_csv()` and specify the path to the folder/directory where the file resides.
+
+```{r import2-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_csv('folder_path/xyz.csv')
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read the file `hsb2.csv` 
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+
+
+```{r import2, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Introduction', exercise.lines=5}
+# read data
+
+
+```
+
+```{r import2-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv')
+```
+
+Sometimes you may get an error while reading data from a file. In such case try the following:
+
+- check the separator in the file and ensure it is a `comma`
+- check the path to the directory where the file resides
