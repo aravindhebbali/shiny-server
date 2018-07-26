@@ -179,7 +179,7 @@ read_csv('//home//hebbali_aravind//datasets//hsb3.csv', col_names = cnames)
 <hr>
 
 <br>
-![](/srv/shiny-server/test/images/mtcars_skip.png){width=80%}
+![](/srv/shiny-server/import-data-in-r-part-1/images/mtcars_skip.png){width=80%}
 <br>
 
 ## Skip Lines
@@ -213,3 +213,62 @@ read_csv('directory_path/file_name.csv', skip = 5)
 ```{r import8-solution}
 read_csv('//home//hebbali_aravind//datasets//hsb4.csv', skip = 3)
 ```
+
+## Maximum Lines 
+
+<hr>
+
+Suppose we want to read only 100 rows of data from a file, we can use `n_max` to specify the maximum number of lines to read and set it equal to 100. 
+
+```{r import5-eg, echo=TRUE, eval=FALSE, collapse=FALSE}
+read_csv('directory_path/file_name.csv', n_max = 100)
+```
+
+<br>
+
+### Instructions
+
+<hr>
+
+- read the first 120 rows from the `hsb2.csv` file
+- the path of the directory is `//home//hebbali_aravind//datasets//`
+- observe the last row in the output and check if it says `# ... with 110 more rows`
+
+```{r import5, exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Maximum Lines', exercise.lines=5}
+# read the first 120 rows of data
+
+
+```
+
+```{r import5-solution}
+read_csv('//home//hebbali_aravind//datasets//hsb2.csv', n_max = 120)
+```
+
+
+## Summary
+
+<hr>
+
+<br>
+<center>
+![](/srv/shiny-server/import-data-in-r-part-1/images/import_func.png){width=60%}
+</center>
+<br>
+
+The above table gives an overview of the functions for reading different types of files in readr and Base R. All the functions in readr offer a common set of options which are described below: 
+
+- `col_names`: whether data includes column names
+- `n_max`: maximum number of lines/rows to read
+- `col_types`: data type of the columns
+- `skip`: number of lines/rows to skip
+
+## Practice 
+
+<hr>
+
+- check the separator type in the following files and read them using appropriate `read_xxx()` function:
+
+    - `hsb.csv`
+    - `mtcars.tsv`
+    - `hsb1.csv`
+    - `hsb.txt`
