@@ -172,7 +172,7 @@ sample_n(ecom, 700)
 
 <hr>
 
-```{r dplyr4-syntax, eval=FALSE, echo=TRUE}
+```{r dplyr6-syntax, eval=FALSE, echo=TRUE}
 sample_frac(ecom, sample_percentage)
 ```
 

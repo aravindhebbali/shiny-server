@@ -9,8 +9,10 @@ library(learnr)
 library(dplyr)
 library(magrittr)
 library(readr)
+library(stringr)
 knitr::opts_chunk$set(echo = FALSE)
 ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom_mini <- sample_n(ecom, size = 10)
 ecom_list <- as.list(ecom_mini)
 ```
 
@@ -75,7 +77,7 @@ do not worry. It returns the first few observations/rows of data. We can
 specify the number of observations it should return as well. Let us use 
 it to view the first 10 rows of our data set.
 
-```{r mag1, eval=TRUE, collapse=TRUE}
+```{r mag1a, eval=TRUE, collapse=TRUE}
 head(ecom, 10)
 ```
 

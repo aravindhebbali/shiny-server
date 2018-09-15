@@ -525,7 +525,7 @@ To convert the first column in the data set to rownames, use `column_to_rownames
 
 <hr>
 
-```{r tibble28a, eval=TRUE, echo=TRUE}
+```{r tibble28a, eval=FALSE, echo=TRUE}
 column_to_rownames(data)
 ```
 
