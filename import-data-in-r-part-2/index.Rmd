@@ -11,7 +11,18 @@ library(haven)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Agenda
+## Introduction
+
+<hr>
+
+Importing or reading data from different sources and file formats is one of the
+basic and crucial stages of any data analysis project. In this tutorial, you 
+will learn to read data into R, examine the different challenges and address
+them using the appropriate methods.
+
+### What will I learn?
+
+<hr>
 
 In this module, we will learn to read data from:
 
@@ -25,7 +36,6 @@ In this module, we will learn to read data from:
     - SAS
     - SPSS
     - STATA
-
 
 ## List Sheets
 
@@ -96,8 +106,7 @@ read_excel('xyz.xls', sheet = 1)
 read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1)
 ```
 
-## Read Specific Cells - Part 1
-
+## Read Specific Cells
 <hr>
 
 Alright! We now know how to read data from an excel sheet but we may not want 
@@ -136,7 +145,7 @@ read_excel('xyz.xls', sheet = 1, range = "B1:C4")
 read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1, range = "A1:C5")
 ```
 
-## Read Specific Cells - Part 2
+## Read Specific Cells 
 
 <hr>
 
@@ -160,14 +169,18 @@ cell and the number of rows and columns to read. It takes two arguments:
 </center>
 <br>
 
+## Read Specific Cells 
+
+<hr>
+
+### Syntax
+
+<hr>
+
 ```{r import61-eg, echo=TRUE, eval=FALSE,  collapse=FALSE}
 read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1, col_names = FALSE,
   range = anchored("A4", dim = c(3, 2)))
 ```
-
-## Read Specific Cells - Part 3
-
-<hr>
 
 #### Instructions
 
@@ -188,7 +201,7 @@ read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1, col_names
   range = anchored("A4", dim = c(3, 2)))
 ```
 
-## Read Specific Cells - Part 4
+## Read Specific Cells 
 
 <hr>
 
@@ -209,14 +222,18 @@ initial cell and the number of rows and columns to read. It takes two arguments:
 </center>
 <br>
 
+## Read Specific Cells 
+
+<hr>
+
+### Syntax
+
+<hr>
+
 ```{r import74-eg, echo=TRUE, eval=FALSE,  collapse=FALSE}
 read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1,
   range = cell_limits(c(1, 1), c(6, 4)))
 ```
-
-## Read Specific Cells - Part 5
-
-<hr>
 
 #### Instructions
 
@@ -233,7 +250,7 @@ read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1,
 ```
 
 ```{r import74-solution}
-read_excel('sample.xls', sheet = 1,
+read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1,
   range = cell_limits(c(1, 2), c(4, 4)))
 ```
 
@@ -306,7 +323,7 @@ read_excel('//home//hebbali_aravind//datasets//sample.xls', sheet = 1, range = c
 
 <hr>
 
-Sometimes, we might have to read data from files of other statistical packages 
+Sometimes, we might have to read data from files of other statistical softwares 
 such as:
 
 - SAS (.sas7bdat)
