@@ -1,7 +1,7 @@
 tabPanel('Data Sources', value = 'tab_datasources', 
 
 	fluidPage(theme = shinytheme('cerulean'),
-		
+
 		includeCSS("mystyle.css"),
 
 		fluidRow(

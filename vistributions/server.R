@@ -2,7 +2,6 @@ library(vistributions)
 library(tibble)
 library(magrittr)
 library(ggplot2)
-library(shiny)
 
 shinyServer(function(input, output, session) {
 
